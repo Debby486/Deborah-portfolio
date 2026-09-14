@@ -30,9 +30,7 @@ export default function Hero() {
           }}
           className="text-base leading-relaxed mb-8"
         >
-          I build AI systems that hold up in production — RAG pipelines,
-          agent workflows, and full-stack apps across Python, Django,
-          FastAPI, Vue and React.
+          I enjoy taking complicated problems and figuring out how to turn them into simple, useful, and reliable software.
         </p>
         <div className="flex items-center gap-4 mb-10">
           <a
