@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+
+const FORM_ENDPOINT = "https://formspree.io/f/xoevwypq";
 
 export default function Contact() {
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus("sending");
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (res.ok) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  }
+
   return (
     <section
       id="contact"
@@ -31,41 +58,67 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Static UI for now — wire this up to an email service (e.g. Formspree, Resend) or your own backend endpoint. */}
-        <form
-          className="flex flex-col gap-4"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <input
-            type="text"
-            placeholder="Name"
-            className="px-4 py-3 rounded-[3px] border bg-transparent text-sm outline-none"
-            style={{ borderColor: "var(--border)", fontFamily: "var(--body)" }}
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            className="px-4 py-3 rounded-[3px] border bg-transparent text-sm outline-none"
-            style={{ borderColor: "var(--border)", fontFamily: "var(--body)" }}
-          />
-          <textarea
-            placeholder="Message"
-            rows={5}
-            className="px-4 py-3 rounded-[3px] border bg-transparent text-sm outline-none resize-none"
-            style={{ borderColor: "var(--border)", fontFamily: "var(--body)" }}
-          />
-          <button
-            type="submit"
-            className="self-start text-sm px-5 py-3 rounded-[3px]"
+        {status === "sent" ? (
+          <div
+            className="flex items-center rounded-[4px] border px-6 py-8 text-sm"
             style={{
-              background: "var(--text)",
-              color: "var(--bg)",
+              borderColor: "var(--border)",
+              color: "var(--text)",
               fontFamily: "var(--body)",
             }}
           >
-            Send message
-          </button>
-        </form>
+            Thanks — your message is in. I'll get back to you soon.
+          </div>
+        ) : (
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              required
+              className="px-4 py-3 rounded-[3px] border bg-transparent text-sm outline-none"
+              style={{ borderColor: "var(--border)", fontFamily: "var(--body)" }}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              className="px-4 py-3 rounded-[3px] border bg-transparent text-sm outline-none"
+              style={{ borderColor: "var(--border)", fontFamily: "var(--body)" }}
+            />
+            <textarea
+              name="message"
+              placeholder="Message"
+              rows={5}
+              required
+              className="px-4 py-3 rounded-[3px] border bg-transparent text-sm outline-none resize-none"
+              style={{ borderColor: "var(--border)", fontFamily: "var(--body)" }}
+            />
+            <div className="flex items-center gap-4">
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="self-start text-sm px-5 py-3 rounded-[3px] disabled:opacity-60"
+                style={{
+                  background: "var(--text)",
+                  color: "var(--bg)",
+                  fontFamily: "var(--body)",
+                }}
+              >
+                {status === "sending" ? "Sending…" : "Send message"}
+              </button>
+              {status === "error" && (
+                <span
+                  className="text-sm"
+                  style={{ color: "var(--accent)", fontFamily: "var(--body)" }}
+                >
+                  Something went wrong — try again, or email me directly.
+                </span>
+              )}
+            </div>
+          </form>
+        )}
       </div>
     </section>
   );
