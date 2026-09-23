@@ -53,9 +53,18 @@ export default function Contact() {
             }}
             className="text-base leading-relaxed"
           >
-            Open to remote roles and interesting AI/full-stack problems.
+            Open to remote roles and interesting AI/full-stack opportunities.
             Reach out directly or use the form.
           </p>
+          <a
+            href="https://www.linkedin.com/in/deboraholuwatoyinbalogun/"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-block mt-6 text-sm px-5 py-3 rounded-[3px] border"
+            style={{ borderColor: "var(--border)", fontFamily: "var(--body)" }}
+          >
+            Reach out on LinkedIn
+          </a>
         </div>
 
         {status === "sent" ? (
@@ -67,7 +76,7 @@ export default function Contact() {
               fontFamily: "var(--body)",
             }}
           >
-            Thanks — your message is in. I'll get back to you soon.
+            Yayy!! Your message is in. I'll get back to you soon.
           </div>
         ) : (
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
