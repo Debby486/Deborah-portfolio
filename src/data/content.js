@@ -26,13 +26,18 @@ export const FALLBACK =
 export const ARTICLES = [
   {
     title: "Building an Agentic AI Planner with Django, Celery, Redis, and OpenAI — PlanPal",
-    date: "Jan 22",
-    href: "https://medium.com/@deborahbalogun07/building-an-agentic-ai-planner-with-django-celery-redis-and-openai-planpal-9eb518f676d0",
+    date: "Oct 6",
+    href: "https://medium.com/@deborahbalogun07/building-a-real-time-voice-support-agent-with-pipecat-deepgram-and-openai-c4ed9a54a717",
   },
   {
     title: "Prompt Engineering for Developers: What Actually Works",
     date: "Jun 19",
     href: "#",
+  },
+  {
+    title: "Building an Agentic AI Planner with Django, Celery, Redis, and OpenAI — PlanPal",
+    date: "Jan 22",
+    href: "https://medium.com/@deborahbalogun07/building-an-agentic-ai-planner-with-django-celery-redis-and-openai-planpal-9eb518f676d0",
   },
   {
     title: "Building an AI Transaction Analyzer with FastAPI, PGVector, and HuggingFace Embeddings",
