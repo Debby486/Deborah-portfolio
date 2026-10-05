@@ -25,7 +25,7 @@ export const FALLBACK =
 // Fill in the real Medium URLs for each — grab them from your profile page.
 export const ARTICLES = [
   {
-    title: "Building an Agentic AI Planner with Django, Celery, Redis, and OpenAI — PlanPal",
+    title: "Building a real-time voice support agent with Pipecat, Deepgram and OpenAI",
     date: "Oct 6",
     href: "https://medium.com/@deborahbalogun07/building-a-real-time-voice-support-agent-with-pipecat-deepgram-and-openai-c4ed9a54a717",
   },
